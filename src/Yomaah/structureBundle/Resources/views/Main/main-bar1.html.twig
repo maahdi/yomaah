@@ -1,0 +1,26 @@
+﻿    <div id="main-bar">
+        <div class="row">
+            <ul class="menu" id="menu-left">
+            {%for menu in menuleft%}
+                <li><a href="{{path(menu.path)}}">{{menu.name}}</a>
+                    {%if menu.sousMenu is defined%}
+                        <ul>
+                        {%for ss in menu.sousMenu%}
+                        <li><a href="{{ path(ss.path,{'path': 'Yomaah'})}}">{{ ss.name}}</a></li>
+                        {%endfor%}
+                        </ul></li>
+                    {%else%}
+                        </li>
+                    {%endif%}
+            {%endfor%}
+            </ul>
+            <ul class="menu" id="menu-right">
+            {%for menu in menuright  %}
+                {%if (connect is defined and connect) or menu == false%}
+                    <li><a href="{{path('post_log')}}">Se Déconnecter</a></li>
+                {%else%}
+                    <li><a href="{{path(menu.path)}}">{{menu.name}}</a></li>
+                {%endif%}
+            {%endfor%}
+        </div>
+    </div>

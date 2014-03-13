@@ -1,0 +1,19 @@
+EuroLiteriestructure:
+    resource: "@EuroLiteriestructureBundle/Resources/config/routing.php"
+    prefix:   /
+
+yomaahajax:
+    resource: "@YomaahajaxBundle/Resources/config/routing.php"
+    prefix:   /
+
+yomaahconnexion:
+    resource: "@YomaahconnexionBundle/Resources/config/routing.php"
+    prefix:   /
+
+yomaah:
+    resource: "@yomaahBundle/Resources/config/routing.php"
+    prefix:   /
+      
+YomaahcodeSourceBundle:
+        resource: "@YomaahcodeSourceBundle/Resources/config/routing.php"
+        prefix:   /
