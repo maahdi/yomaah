@@ -1,5 +1,6 @@
 <?php
 namespace Yomaah\ajaxBundle\Controller;
+/**/
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
