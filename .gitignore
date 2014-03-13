@@ -1,4 +1,4 @@
-﻿/app/cache/
+﻿/app/cache/*
 /src/Yomaah/codeSourceBundle
 /src/Yomaah/structureBundle/Classes/GestionMenu.php
 /src/yomaah/structureBundle/Classes/MenuTwigExtension.php

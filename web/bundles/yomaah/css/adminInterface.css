@@ -144,7 +144,7 @@
     height : auto;
     /*height : 5em;*/
     position : relative;
-    top : 2em;
+    top : -1em;
     font-size : 1em;
 }
 .bar
