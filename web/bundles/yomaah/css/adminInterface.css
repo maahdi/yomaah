@@ -60,10 +60,20 @@
     transition:.6s;
 }
 
-.btn-admin
+.marq .btn-admin
+{
+    bottom:.6em;
+}
+
+.prom .btn-admin
+{
+    bottom:-4.0em;
+}
+
+.marq .btn-admin,
+.prom .btn-admin
 {
     display:inline-block;
-    bottom:-6.6em;
     float:right;
     margin-right:1.5em;
     position : relative;
@@ -117,10 +127,11 @@
 .contentI
 {
     background-color: #a7a39d;
-    border-left:1px solid black;
     position : relative;
     float : left;
     width : 80%;
+    margin-right:-5%;
+    border-left:1px solid black;
     height : auto;
     padding-left : 2%;
     padding-top : 1%;
@@ -133,7 +144,7 @@
     height : auto;
     /*height : 5em;*/
     position : relative;
-    /*top : 2em;*/
+    top : 2em;
     font-size : 1em;
 }
 .bar
@@ -214,7 +225,7 @@
 .sectionAdmin
 {
     display : inline-block;
-    background-color : #f1ecec;
+    /*background-color : #f1ecec;*/
     width : 20%;
     border : 1px solid #aaa;
     -webkit-border-radius: 3px 3px 3px 3px;
@@ -232,7 +243,7 @@
     top:5.5em;
     position:absolute;
     width:100%;
-    height:50em;
+    height:auto;
     z-index:3011;
     /*overflow:scroll;*/
 }
@@ -240,17 +251,23 @@
 .textareaPromo
 {
     width : 80%;
-    height:70%;
+    height:15em;
     font-size:0.7em;
 }
 
 .textareaMarque
 {
     width : 80%;
-    height:90%;
+    height:13em;
     font-size:0.7em;
 }
-.admin-content section article input
+.adminPromo input
+{
+    width : 80%;
+    height : 2em;
+    font-size : 0.7em;
+}
+.adminMarque input
 {
     width : 40%;
     height:2.0em;
@@ -286,7 +303,14 @@
 .adminMarque,
 .adminLogoMarque
 {
-    height:10em;
+    /*height:10em;*/
+}
+
+.adminPromoInfo
+{
+    position:relative;
+    width : 60%;
+    float :right;
 }
 .adminLogoMarque
 {
@@ -294,11 +318,18 @@
     width:30%;
     float:right;
 }
-.adminPromo,
+.adminPromo
+{
+    position:relative;
+    width:40%;
+    float:left;
+    height:auto;
+}
 .adminMarque
 {
     position:relative;
     width:70%;
+    height:auto;
     float:left;
 }
 .admin-c section
@@ -309,7 +340,8 @@
 {
     /*position:relative;*/
     height:20em;
-    background-color :#d0cbcb;
+    /*background-color :#4c8597; */
+    background-color :#d0cbcb; 
     border:1px solid black;
     margin-bottom:1em;
     /*width:100%;*/
@@ -332,7 +364,7 @@
 .contentMarque
 {
     padding-top:0.1em;
-    height:auto;
+    /*height:auto;*/
 }
 
 .adminMarqueLogo img
