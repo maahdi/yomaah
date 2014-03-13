@@ -3,9 +3,9 @@
     width : 20%;
     height: 100%;
     position:relative;
-    border-right : 1px solid black;
+    /*border-right : 1px solid black;*/
     float : left;
-    /*padding-top:1%;*/
+    padding-top:1%;
 }
 
 .btn-admin li
@@ -116,6 +116,8 @@
 
 .contentI
 {
+    background-color: #a7a39d;
+    border-left:1px solid black;
     position : relative;
     float : left;
     width : 80%;
@@ -262,29 +264,17 @@
     margin-bottom:0.5em;
     margin-left:0.8em;
 }
+
 .admin-content label
 {
     margin-top: 0.5em;
 }
+
 .admin-content label.inline
 {
     display:inline;
 }
-/*.admin-content input,*/
-/*.admin-content label,*/
-/*.admin-content textarea*/
-/*{*/
-    /*display:inline-block;*/
-    /*float:left;*/
-    /*margin-left:1em;*/
-/*}*/
-/*.admin-content label,*/
-/*.admin-content textarea*/
-/*{*/
-    /*display:inline-block;*/
-    /*float:left;*/
-    /*margin-left:1em;*/
-/*}*/
+
 .admin-content
 {
     width:100%;
@@ -319,7 +309,7 @@
 {
     /*position:relative;*/
     height:20em;
-    background-color :#4c8597; 
+    background-color :#d0cbcb;
     border:1px solid black;
     margin-bottom:1em;
     /*width:100%;*/
