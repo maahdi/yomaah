@@ -86,7 +86,11 @@ if ($this->secure->getToken() != null)
 		/**
 		* Si adresse connu dans tous les cas on associe la visite avec l'admin
 		*/
-	    }else if ($this->secure->isGranted('ROLE_SUPER_ADMIN') || ($this->secure->isGranted('ROLE_ADMIN')))
+/* A remplacer en prod
+
+}else if ($this->secure->isGranted('ROLE_SUPER_ADMIN') || $this->secure->isGranted('ROLE_ADMIN'))
+ */
+	    }else if ($this->secure->isGranted('ROLE_SUPER_ADMIN'))
 	    {
 	        $id = $this->secure->getToken()->getUser()->getIdUser();
 	        $sql = 'update visites set idUser = ? where adresseIp = ? and dateConnexion = ?';

@@ -1,11 +1,15 @@
 
-{%extends 'EuroLiteriestructureBundle:Main:layout.html.twig' %}
+{%extends 'yomaahBundle:Main:base.html.twig' %}
 
 {%block body%}
 <div class="articles small-12 columns marge">
         <div class="article border-article marge">
             <article class="art-titre"><h1>Connexion</h1></article>
-            {#<figure class="art-png"><img src="{{asset('bundles/yomaah/images/connection.png')}}"></img></figure>#}
+            <figure class="art-png"><img src="{{asset('bundles/yomaah/images/connection.png')}}"></img></figure>
+            <article class="art-triangle"></article>
+            <section class="art-content">
+                <p>Pour une version de démonstration logguez vous avec les identifiants par défault.</p><p>(Je vous recommande d'utiliser Firefox)</p>
+            </section>
 {% if error %}
 <div>{{ error.message }}</div>
 {% endif %}
@@ -13,7 +17,7 @@
     <label for="username">Login :</label>
     <input type="text" id="username" name="_username" value="{{ last_username }}" autofocus />
     <label for="password">Mot de passe :</label>
-    <input type="password" id="password" name="_password" />
+    <input type="password" id="password" name="_password" value="test" />
     <button type="submit">Login</button>
 </form>
         </div>

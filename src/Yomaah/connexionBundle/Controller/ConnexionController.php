@@ -20,7 +20,7 @@ class ConnexionController extends Controller
         }
         if ($session->get(SecurityContext::LAST_USERNAME) == 'root' || $session->get(SecurityContext::LAST_USERNAME) == '')
         {
-            $username = "";
+            $username = "test";
         }else
         {
             $username = $session->get(SecurityContext::LAST_USERNAME);
@@ -28,7 +28,6 @@ class ConnexionController extends Controller
         return $this->render('YomaahconnexionBundle:Default:login.html.twig', array(
         // last username entered by the user
         'last_username' => $username,
-        'error'   => $error,
-        'position' => 'Login'));
+        'error'   => $error));
     }
 }
