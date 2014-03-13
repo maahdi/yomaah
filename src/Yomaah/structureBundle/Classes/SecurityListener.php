@@ -73,6 +73,10 @@ class SecurityListener implements EventSubscriberInterface
                     $this->createTestEnvironnement($token);
                     $response = new RedirectResponse($this->router->generate('test_accueil'));
                     $event->setResponse($response);
+                }else
+                {
+                    $response = new RedirectResponse($this->router->generate('admin_literie_accueil'));
+                    $event->setResponse($response);
                 }                    
             }
             /*
