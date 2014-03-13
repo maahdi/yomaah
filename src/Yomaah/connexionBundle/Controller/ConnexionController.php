@@ -28,6 +28,7 @@ class ConnexionController extends Controller
         return $this->render('YomaahconnexionBundle:Default:login.html.twig', array(
         // last username entered by the user
         'last_username' => $username,
-        'error'   => $error));
+        'error'   => $error,
+        'position' => 'Login'));
     }
 }
