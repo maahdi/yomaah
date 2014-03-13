@@ -17,7 +17,6 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Yomaah\structureBundle\yomaahBundle(),
-            new Yomaah\codeSourceBundle\YomaahcodeSourceBundle(),
             new Yomaah\connexionBundle\YomaahconnexionBundle(),
             new Yomaah\ajaxBundle\YomaahajaxBundle(),
             new EuroLiterie\structureBundle\EuroLiteriestructureBundle(),
