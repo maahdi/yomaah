@@ -31,10 +31,6 @@ class Menu
      */
     protected $position;
 
-    /**
-     *@ORM\Column(type="integer")
-     */
-    protected $site;
     
     /**
      *@ORM\OneToMany(targetEntity="SousMenu", mappedBy="menu")
@@ -79,28 +75,6 @@ class Menu
         $this->sousMenu = new ArrayCollection();
     }
 
-    /**
-     * Set site
-     *
-     * @param string $site
-     * @return Menu
-     */
-    public function setSite($site)
-    {
-        $this->site = $site;
-    
-        return $this;
-    }
-
-    /**
-     * Get site
-     *
-     * @return string 
-     */
-    public function getSite()
-    {
-        return $this->site;
-    }
     /**
      * Set path
      *
