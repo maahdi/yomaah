@@ -1,5 +1,0 @@
-_assetic:
-    resource: .
-    type: assetic
-_app:
-    resource: /srv/http/workspace/framework/app/config/routing_dev.yml
