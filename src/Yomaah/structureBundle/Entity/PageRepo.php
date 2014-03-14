@@ -23,7 +23,7 @@ $query = $this->getEntityManager()
     ->setParameter('url',$pageUrl);
              */
             $query = $this->getEntityManager()
-                ->createQuery('select p.keywords from yomaahBundle:Page p where p.pageUrl = :url and p.site is null')
+                ->createQuery('select p.keywords from yomaahBundle:Page p where p.pageUrl = :url')
                 ->setParameter('url',$pageUrl);
         }else
         {
