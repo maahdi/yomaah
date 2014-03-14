@@ -30,7 +30,38 @@ class Page
      */
     protected $articles;
 
+    /**
+     *@ORM\ManyToOne(targetEntity="Site",inversedBy="page")
+     *@ORM\JoinColumn(name="idSite", referencedColumnName="idSite")
+     **/
+    protected $site;
 
+    /**
+     *@ORM\Column(type="text")
+     */
+    protected $keywords;
+
+     /* Set pageId
+     *
+     * @param integer $site
+     * @return Page
+     */
+    public function setSite($site)
+    {
+        $this->site = $site;
+    
+        return $this;
+    }
+
+    /**
+     * Get pageId
+     *
+     * @return integer 
+     */
+    public function getSite()
+    {
+        return $this->site;
+    }
     /* Set pageId
      *
      * @param integer $pageId
@@ -51,6 +82,28 @@ class Page
     public function getPageId()
     {
         return $this->pageId;
+    }
+    /**
+     * Set keywords
+     *
+     * @param string $keywords
+     * @return Page
+     */
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
+    
+        return $this;
+    }
+
+    /**
+     * Get keywords
+     *
+     * @return string 
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
     }
 
     /**
