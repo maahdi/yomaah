@@ -52,4 +52,9 @@ $collection->add('ajax_imagesAdminStructure', new Route('/ajax/imagesAdminStruct
 $collection->add('ajax_imagesAdmin', new Route('/ajax/imagesAdmin', array(
     '_controller' => 'YomaahajaxBundle:Ajax:imagesAdmin'),
     array('_method' => 'GET')));
+
+$collection->add('ajax_saveImage', new Route('/ajax/saveImage', array(
+    '_controller' => 'YomaahajaxBundle:Ajax:saveImage'),
+    array('_method' => 'POST')));
+
 return $collection;

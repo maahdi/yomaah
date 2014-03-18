@@ -361,4 +361,11 @@ class AjaxController extends Controller
         $request = $this->get('request');
         return $this->forward('EuroLiteriestructureBundle:Main:imagesAdmin',array('objet' => $request->query->get('lien')));
     }
+    public function saveImageAction()
+    {
+        $request = $this->get('request');
+        return $this->forward('EuroLiteriestructureBundle:Main:saveImage', array('id' => $request->request->get('id'),
+            'png' => $request->request->get('newPng'),
+            'elem' => $request->request->get('lien')));
+    }
 }
