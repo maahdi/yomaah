@@ -376,12 +376,12 @@ class AjaxController extends Controller
         //echo '\n';
         $file = $request->files->get($filename);
         $fileInfo = array(
-        'maxSize' => strip_tags($request->query->get('maxSize')),
-        'maxW' => strip_tags($request->query->get('maxW')),
-        'colorR' => strip_tags($request->query->get('colorR')),
-        'colorG' => strip_tags($request->query->get('colorG')),
-        'colorB' => strip_tags($request->query->get('colorB')),
-        'maxH' => strip_tags($request->query->get('')));
+        'maxSize' => strip_tags($request->request->get('maxSize')),
+        'maxW' => strip_tags($request->request->get('maxW')),
+        'colorR' => strip_tags($request->request->get('colorR')),
+        'colorG' => strip_tags($request->request->get('colorG')),
+        'colorB' => strip_tags($request->request->get('colorB')),
+        'maxH' => strip_tags($request->request->get('')));
         return $this->forward('EuroLiteriestructureBundle:Main:uploadLogo',array('request' => $fileInfo, 'file' => $file));
     }
 
