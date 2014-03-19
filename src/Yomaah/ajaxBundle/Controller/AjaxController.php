@@ -372,8 +372,6 @@ class AjaxController extends Controller
     {
         $request = $this->get('request');
         $filename = $request->request->get('filename');
-        //var_dump($_FILES);
-        //echo '\n';
         $file = $request->files->get($filename);
         $fileInfo = array(
         'maxSize' => strip_tags($request->request->get('maxSize')),
@@ -383,6 +381,13 @@ class AjaxController extends Controller
         'colorB' => strip_tags($request->request->get('colorB')),
         'maxH' => strip_tags($request->request->get('')));
         return $this->forward('EuroLiteriestructureBundle:Main:uploadLogo',array('request' => $fileInfo, 'file' => $file));
+    }
+
+    public function deleteLogoAction()
+    {
+        $request = $this->get('request');
+        return $this->forward('EuroLiteriestructureBundle:Main:deleteLogo', array('lien' => $request->request->get('lien'),
+                                                                                  'png' => $request->request->get('png')));
     }
 
 }
