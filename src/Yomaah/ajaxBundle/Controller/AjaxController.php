@@ -368,4 +368,21 @@ class AjaxController extends Controller
             'png' => $request->request->get('newPng'),
             'elem' => $request->request->get('lien')));
     }
+    public function uploadLogoAction()
+    {
+        $request = $this->get('request');
+        $filename = $request->request->get('filename');
+        //var_dump($_FILES);
+        //echo '\n';
+        $file = $request->files->get($filename);
+        $fileInfo = array(
+        'maxSize' => strip_tags($request->query->get('maxSize')),
+        'maxW' => strip_tags($request->query->get('maxW')),
+        'colorR' => strip_tags($request->query->get('colorR')),
+        'colorG' => strip_tags($request->query->get('colorG')),
+        'colorB' => strip_tags($request->query->get('colorB')),
+        'maxH' => strip_tags($request->query->get('')));
+        return $this->forward('EuroLiteriestructureBundle:Main:uploadLogo',array('request' => $fileInfo, 'file' => $file));
+    }
+
 }

@@ -57,4 +57,7 @@ $collection->add('ajax_saveImage', new Route('/ajax/saveImage', array(
     '_controller' => 'YomaahajaxBundle:Ajax:saveImage'),
     array('_method' => 'POST')));
 
+$collection->add('ajax_uploadLogo', new Route('/ajax/uploadLogo', array(
+    '_controller' => 'YomaahajaxBundle:Ajax:uploadLogo'),
+    array('_method' => 'POST')));
 return $collection;

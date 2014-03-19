@@ -4,6 +4,19 @@
     </section>
     <section class="newImage art-titre">
         <h1>Nouveau logo</h1>
-        <input id="fileupload" type="file" name="files[]" data-url="test.php" multiple>
+        {#<input id="fileupload" type="file" name="files[]" data-url="test.php" multiple>#}
+        <form id="sleeker" enctype="multipart/form-data" name="sleeker" method="post" action="ajax/uploadLogo">
+            <input type="hidden" value="9999999999" name="maxSize">
+            <input type="hidden" value="200" name="maxW">
+            <input type="hidden" value="255" name="colorR">
+            <input type="hidden" value="255" name="colorG">
+            <input type="hidden" value="255" name="colorB">
+            <input type="hidden" value="300" name="maxH">
+            <input type="hidden" value="filename" name="filename">
+            <input type="file" onchange="ajaxUpload(this.form,'ajax/uploadLogo','upload_area','File Uploading Please Wait...<br /><img src=\'images/loader_light_blue.gif\' width=\'128\' height=\'15\' border=\'0\' />','<img src=\'images/error.gif\' width=\'16\' height=\'16\' border=\'0\' /> Error in Upload, check settings and path info in source code.'); return false;" name="filename">
+        </form>
+        <div id="upload_area">
+        </div>
     </section>
 </div>
+{#<script src="../bundles/euroliteriestructure/js/ajaxupload.js"></script>#}
