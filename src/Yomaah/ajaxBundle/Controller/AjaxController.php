@@ -139,7 +139,11 @@ class AjaxController extends Controller
                 {
                     return new Response('<div><p>Vous allez mettre à jour les mots-clés généraux !!</p><p>Souhaitez-vous continuer ?</p></div>');
                     
-                }else
+                }else if ($request->request->get('element') == 'sliderAdmin')
+                {
+                    return new Response('<div><p>Vous allez mettre à jour les images du slider !!</p><p>Souhaitez-vous continuer ?</p></div>');
+                }
+                else
                 {
                     $element = \EuroLiterie\structureBundle\Controller\MainController::getRepoAdminContentList($request->request->get('element'));
                     $template = 'YomaahajaxBundle:Ajax:'.$request->request->get('dialog').$element.'.html.twig';
@@ -209,6 +213,9 @@ class AjaxController extends Controller
                                 <li>Mettre à jour</li>
                             </article>
                         </div>');
+            }else if ($request == 'sliderAdmin')
+            {
+                return $this->container->get('templating')->renderResponse('YomaahajaxBundle:Ajax:imagesSlider.html.twig');
             }else
             {
                 return $this->forward('EuroLiteriestructureBundle:Main:getAdminContentStructure',array('object' => $request));
@@ -278,6 +285,10 @@ class AjaxController extends Controller
                 $em->persist($element);
                 $em->flush();
                 return new Response();
+            }else if ($request->request->get('lien') == 'sliderAdmin')
+            {
+                return $this->forward('EuroLiteriestructureBundle:Main:saveSlider',array('active' => $request->request->get('active'),
+                                                                                         'inactive' => $request->request->get('inactive')));
             }else
             {
                 return $this->forward('EuroLiteriestructureBundle:Main:saveElement',array('input' => $request->request->get('input'),
