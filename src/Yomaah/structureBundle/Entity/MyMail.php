@@ -45,7 +45,7 @@ class MyMail
         $mailer = \Swift_Message::newInstance();
         $mailer->setSubject('CONTACT - '.$this->objet);
         $mailer->setBody($this->message);
-        $mailer->setTo('genevieve-langlade@club-internet.fr');
+        $mailer->setTo('euro.literie@orange.fr');
         $mailer->setFrom($this->from);
         return $mailer;
     }
