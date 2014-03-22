@@ -45,7 +45,7 @@ class MyMail
         $mailer = \Swift_Message::newInstance();
         $mailer->setSubject($this->objet);
         $mailer->setBody($this->message);
-        $mailer->setTo('kokoriko-yoshi@hotmail.fr');
+        $mailer->setTo('genevieve-langlade@club-internet.fr');
         $mailer->setFrom($this->from);
         return $mailer;
     }
