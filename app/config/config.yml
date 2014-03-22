@@ -66,4 +66,4 @@ swiftmailer:
 #    spool:     { type: memory }
     port : 587
     transport : mail
-    host : smtp.euroliterie-mdm.fr
+    host : ns0.ovh.net
