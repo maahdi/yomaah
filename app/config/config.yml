@@ -65,5 +65,5 @@ swiftmailer:
 #    password:  %mailer_password%
 #    spool:     { type: memory }
     port : 587
-    transport : smtp
+    transport : mail
     host : smtp.euroliterie-mdm.fr
