@@ -65,4 +65,4 @@ swiftmailer:
 #    password:  %mailer_password%
 #    spool:     { type: memory }
     transport : smtp
-    host : smtp.yomaah.fr
+    host : smtp.euroliterie-mdm.fr
