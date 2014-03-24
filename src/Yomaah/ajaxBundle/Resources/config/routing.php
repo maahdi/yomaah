@@ -61,6 +61,10 @@ $collection->add('ajax_uploadLogo', new Route('/ajax/uploadLogo', array(
     '_controller' => 'YomaahajaxBundle:Ajax:uploadLogo'),
     array('_method' => 'POST')));
 
+$collection->add('ajax_uploadSlider', new Route('/ajax/uploadSlider', array(
+    '_controller' => 'YomaahajaxBundle:Ajax:uploadSlider'),
+    array('_method' => 'POST')));
+
 $collection->add('ajax_deleteLogo', new Route('/ajax/deleteLogo', array(
     '_controller' => 'YomaahajaxBundle:Ajax:deleteLogo'),
     array('_method' => 'POST')));

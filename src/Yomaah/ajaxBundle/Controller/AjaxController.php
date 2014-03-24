@@ -379,6 +379,21 @@ class AjaxController extends Controller
             'png' => $request->request->get('newPng'),
             'elem' => $request->request->get('lien')));
     }
+    public function uploadSliderAction()
+    {
+        $request = $this->get('request');
+        $filename = $request->request->get('filename');
+        $file = $request->files->get($filename);
+        $fileInfo = array(
+        'maxSize' => strip_tags($request->request->get('maxSize')),
+        'maxW' => strip_tags($request->request->get('maxW')),
+        'colorR' => strip_tags($request->request->get('colorR')),
+        'colorG' => strip_tags($request->request->get('colorG')),
+        'colorB' => strip_tags($request->request->get('colorB')),
+        'maxH' => strip_tags($request->request->get('maxH')));
+        return $this->forward('EuroLiteriestructureBundle:Main:uploadSlider', array('request' => $fileInfo, 'file' => $file));
+        
+    }
     public function uploadLogoAction()
     {
         $request = $this->get('request');
