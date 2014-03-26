@@ -207,11 +207,15 @@ class AjaxController extends Controller
             }else if ($request == 'GkeywordsAdmin')
             {
                 $keyRepo = new KeywordsRepo();
-                return new Response('<div class="admin-c border">
-                            <label>Mots-clés généraux</label><textarea class="textareaGkeywords" name="Gkeywords">'.$keyRepo->getGeneralKeywords().'</textarea>
+                return new Response('<div class="Gkeywords admin-c border">
+                    <section class="adminGkeywords">
+                        <label>Mots-clés généraux</label><textarea class="textareaGkeywords" name="Gkeywords">'.$keyRepo->getGeneralKeywords().'</textarea>
+                        </section>
+                        <section class="btn-adminPanel">
                             <article class="btn-admin maj-Gkeywords">
                                 <li>Mettre à jour</li>
                             </article>
+                        </section>
                         </div>');
             }else if ($request == 'sliderAdmin')
             {

@@ -51,10 +51,12 @@ $query = $this->getEntityManager()
                             <label>Mot-clés</label><textarea class="textareaPage" name="keywords">%keywords%</textarea>
                         </article>
                     </section>
-                    <article class="btn-admin maj">
-                        <li>Mettre à jour</li>
-                    </article>
-                   </div>';
+                    <section class="btn-adminPanel">
+                        <article class="btn-admin maj">
+                            <li>Mettre à jour</li>
+                        </article>
+                    </section>
+               </div>';
     }
  
 }
