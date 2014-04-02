@@ -12,16 +12,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class MenuRepo extends EntityRepository
 {
-    public function getLeftMenu($site = null)
+    public function getLeftMenu(Array $param)
     {
-        if ($site == null)
+        if ($param['idSite'] === false)
         {
             return $this->getEntityManager()->createQuery('select m from yomaahBundle:Menu m where m.position=0')->getResult();
+            
+        }else if ($param['idSite'] == null)
+        {
+            return $this->getEntityManager()->createQuery('select m from yomaahBundle:Menu m where m.position=0 and m.site is null')->getResult();
             
         }else
         {
             return $this->getEntityManager()->createQuery('select m from yomaahBundle:Menu m where m.position=0 and m.site = :site')
-                ->setParameter('site', $site)
+                ->setParameter('site', $param['idSite'])
                 ->getResult();
         }
         /**
@@ -30,15 +34,20 @@ class MenuRepo extends EntityRepository
          **/
     }
 
-    public function getRightMenu($site = null)
+    public function getRightMenu(Array $param)
     {
-        if ($site == null)
+        if ($param['idSite'] == null)
+        {
+            return $this->getEntityManager()->createQuery('select m from yomaahBundle:Menu m where m.position=1 and m.site is null')->getResult();
+
+        }else if ($param['idSite'] == false)
         {
             return $this->getEntityManager()->createQuery('select m from yomaahBundle:Menu m where m.position=1')->getResult();
+            
         }else
         {
             return $this->getEntityManager()->createQuery('select m from yomaahBundle:Menu m where m.position=1 and m.site = :site')
-                ->setParameter('site', $site)
+                ->setParameter('site', $param['idSite'])
                 ->getResult();
         }
     }

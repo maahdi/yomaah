@@ -5,11 +5,11 @@ use Symfony\Component\Routing\Route;
 
 $collection = new RouteCollection();
 
-$collection->add('login', new Route('/login', array(
+$collection->add('yomaah_login', new Route('/login', array(
     '_controller' => 'YomaahconnexionBundle:Connexion:login',
 )));
 
-$collection->add('admin_login', new Route('/admin_login', array(
+$collection->add('admin_login', new Route('/admin', array(
     '_controller' => 'YomaahconnexionBundle:Connexion:login',
 )));
 $collection->add('login_check', new Route('/login_check',array()));

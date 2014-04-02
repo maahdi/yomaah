@@ -11,6 +11,7 @@ use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Util\SecureRandom;
+use Yomaah\structureBundle\Classes\BundleDispatcher;
 
 /**
  * Le listener est utilisé quand un utilisateur se log
@@ -26,14 +27,16 @@ class SecurityListener implements EventSubscriberInterface
     private $router;
     private $dispatcher;
     private $session;
+    private $bundleDispatcher;
 
-    public function __construct(SecurityContextInterface $secure, Router $router, EventDispatcher $dispatch, \Doctrine\DBAL\Connection $db, Session $session)
+    public function __construct(SecurityContextInterface $secure, Router $router, EventDispatcher $dispatch, \Doctrine\DBAL\Connection $db, Session $session, BundleDispatcher $dispatcher)
     {
         $this->db = $db;
         $this->secure = $secure;
         $this->dispatcher = $dispatch;
         $this->router = $router;
         $this->session = $session;
+        $this->bundleDispatcher = $dispatcher;
     }
 
     public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
@@ -45,8 +48,9 @@ class SecurityListener implements EventSubscriberInterface
     {
         if ($this->secure->getToken()->isAuthenticated()){
             $role = $this->secure->getToken()->getUser()->getRoles();
-            if ($role != "anon."){
-                if ($role[0] == "visiteur")
+            if (!($this->secure->getToken() == null))
+            {
+                if ($role[0] == 'visiteur')
                 {
                     /**
                      * Cette portion de code définit un token générique si la base est vide
@@ -69,19 +73,23 @@ class SecurityListener implements EventSubscriberInterface
                             }
                         }
                     }
-                    $this->session->set('testToken' , $token);
+                    $this->bundleDispatcher->setSite('test');
+                    $this->bundleDispatcher->setIdSite($token);
                     $this->createTestEnvironnement($token);
                     $response = new RedirectResponse($this->router->generate('test_accueil'));
-                    $event->setResponse($response);
                 }else
                 {
-                    $response = new RedirectResponse($this->router->generate('admin_literie_accueil'));
-                    $event->setResponse($response);
+                    if ($role[0] == 'client' && $this->bundleDispatcher->getDeployed() === false)
+                    {
+                        $response = new RedirectResponse($this->router->generate('espace_client_accueil'));
+
+                    }else if ($role[0] == 'administrateur' && $this->bundleDispatcher->getDeployed() === false)
+                    {
+                        $response = new RedirectResponse($this->router->generate('espace_client_admin'));
+                    }
                 }                    
+                $event->setResponse($response);
             }
-            /*
-             * Ajouter retour reponse vers la page qu'on veut
-             */
         }
     }
 
@@ -111,8 +119,8 @@ class SecurityListener implements EventSubscriberInterface
         $sql = array(
             'INSERT INTO `pageTest` (`pageUrl`,`token`) VALUES (\'default\',?),(\'accueil\',?);',
             'INSERT INTO `articleTest` (`artId`, `artTitle`, `artContent`, `artPngId`, `artDate`, `artPageId`, `artImgUrl`, `artSource`, `artLien`,`token`) VALUES
-            (1,\'Mon Titre\',\'<p>Ceci est un article</p>\',4,Now(),(select pageId from pageTest where pageUrl = \'accueil\' and token = '.$token.'),NULL,NULL,NULL,?),
-                (2, \'Mon titre\', \'<p>Mon texte ici ...</p>\', 3, NULL, (select pageId from pageTest where pageUrl = \'default\' and token = '.$token.'), NULL, NULL, NULL,?);');
+            (1,\'Mon Titre\',\'<p>Ceci est un article</p>\',4,Now(),(select pageId from pageTest where pageUrl = \'accueil\' and token = ?),NULL,NULL,NULL,?)',
+                 'INSERT INTO `articleTest` (`artId`, `artTitle`, `artContent`, `artPngId`, `artDate`, `artPageId`, `artImgUrl`, `artSource`, `artLien`,`token`) VALUES(2, \'Mon titre\', \'<p>Mon texte ici ...</p>\', 3, NULL, (select pageId from pageTest where pageUrl = \'default\' and token = ?), NULL, NULL, NULL,?);');
         foreach($sql as $query)
         {
             $this->db->executeQuery($query,array($token, $token));
