@@ -31,12 +31,6 @@ class Page implements \JsonSerializable
     protected $articles;
 
     /**
-     *@ORM\ManyToOne(targetEntity="Site",inversedBy="page")
-     *@ORM\JoinColumn(name="idSite", referencedColumnName="idSite")
-     **/
-    protected $site;
-
-    /**
      *@ORM\Column(type="text")
      */
     protected $keywords;
@@ -46,27 +40,6 @@ class Page implements \JsonSerializable
      **/
     protected $position;
 
-     /* Set pageId
-     *
-     * @param integer $site
-     * @return Page
-     */
-    public function setSite($site)
-    {
-        $this->site = $site;
-    
-        return $this;
-    }
-
-    /**
-     * Get pageId
-     *
-     * @return integer 
-     */
-    public function getSite()
-    {
-        return $this->site;
-    }
     /* Set pageId
      *
      * @param integer $pageId

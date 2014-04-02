@@ -32,8 +32,8 @@ class BundleDispatcher
          * $this->site = 'site';
          * $this->deployed = true;
          */
-        $this->site = 'yomaah';
-        $this->deployed = false;
+        $this->site = 'literie';
+        $this->deployed = true;
 
         $this->session = $session;
         $this->secure = $secure;

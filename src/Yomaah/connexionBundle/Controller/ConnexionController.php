@@ -14,6 +14,7 @@ class ConnexionController extends Controller
         {
             $template = $dispatcher->getControllerPath().'Connexion:login.html.twig';
             $param['position'] = 'Login';
+            $param['hide'] = true;
         }else
         {
             $template = 'YomaahconnexionBundle:Default:login.html.twig';
