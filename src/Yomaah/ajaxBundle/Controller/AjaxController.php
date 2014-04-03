@@ -168,16 +168,15 @@ class AjaxController extends Controller
     public function getAdminContentAction()
     {
         $bundleDispatcher = $this->get('bundleDispatcher');
-        $param = $this->get('request')->request->all();
+        $param = $this->get('request')->query->all();
         if ($bundleDispatcher->isAdmin())
         {
-            $request = $this->get('request');
             //$param['lien'] = $request->query->get('lien');
-            if ($bundleDispatcher->isClientSite() && preg_match('/pagesAdmin/', $param['lien']) == 0)
+            if ($bundleDispatcher->isClientSite() && preg_match('/pagesAdmin/', $param['lien']) === 0)
             {
                 return $this->forward($bundleDispatcher->getControllerPath().'Main:getAdminContent', array('param' => $param));
 
-            }else if (preg_match('/pagesAdmin/', $param['lien']))
+            }else if (preg_match('/pagesAdmin/', $param['lien']) === 1)
             {
                 $pages = $this->getDoctrine()->getRepository('yomaahBundle:Page')->findPage($bundleDispatcher->getIdSite());
                 return new JsonResponse($pages);

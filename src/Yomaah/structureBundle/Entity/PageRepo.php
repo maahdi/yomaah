@@ -14,11 +14,11 @@ class PageRepo extends EntityRepository
 {
     public function findPage($idSite = null)
     {
-        if ($idSite == null)
+        if ($idSite === null)
         {
             $query = $this->getEntityManager()
                 ->createQuery('select p from yomaahBundle:Page p where p.site is null');
-        }else if ($idSite == false)
+        }else if ($idSite === false)
         {
             $query = $this->getEntityManager()
                 ->createQuery('select p from yomaahBundle:Page p');
