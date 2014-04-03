@@ -124,14 +124,15 @@ class AjaxController extends Controller
     public function getDialogAction()
     {
         $bundleDispatcher = $this->get('bundleDispatcher');
+        $param = $this->get('request')->request->all();
         if ($bundleDispatcher->isAdmin())
         {
-            $request = $this->get('request');
-            if ($request->request->has('lien'))
-            {
-                $param['lien'] = $request->request->get('lien');
-            }
-            $param['dialog'] = $request->request->get('dialog');
+            //$request = $this->get('request');
+            //if ($request->request->has('lien'))
+            //{
+                //$param['lien'] = $request->request->get('lien');
+            //}
+            //$param['dialog'] = $request->request->get('dialog');
 
             /** si on est sur le site client
              * les templates de dialogue des articles
@@ -167,10 +168,11 @@ class AjaxController extends Controller
     public function getAdminContentAction()
     {
         $bundleDispatcher = $this->get('bundleDispatcher');
+        $param = $this->get('request')->request->all();
         if ($bundleDispatcher->isAdmin())
         {
             $request = $this->get('request');
-            $param['lien'] = $request->query->get('lien');
+            //$param['lien'] = $request->query->get('lien');
             if ($bundleDispatcher->isClientSite() && preg_match('/pagesAdmin/', $param['lien']) == 0)
             {
                 return $this->forward($bundleDispatcher->getControllerPath().'Main:getAdminContent', array('param' => $param));
@@ -190,10 +192,11 @@ class AjaxController extends Controller
     public function getAdminContentStructureAction()
     {
         $bundleDispatcher = $this->get('bundleDispatcher');
+        $param = $this->get('request')->request->all();
         if ($bundleDispatcher->isAdmin())
         {
-            $param['lien'] = $this->get('request')->request->get('lien');
-            if ($bundleDispatcher->isClientSite() && preg_match('/pagesAdmin/', $param['lien']) == 0)
+            //$param['lien'] = $this->get('request')->request->get('lien');
+            if ($bundleDispatcher->isClientSite() && preg_match('/pagesAdmin/', $param['lien']) === 0)
             {
                 return $this->forward($bundleDispatcher->getControllerPath().'Main:getAdminContentStructure', array('param' => $param));
 
@@ -207,6 +210,12 @@ class AjaxController extends Controller
                 /**
                  * Pour le site principal
                  */
+            }
+        }else
+        {
+            if ($bundleDispatcher->isClientSite())
+            {
+                return $this->forward($bundleDispatcher->getControllerPath().'Main:getAdminContentStructure', array('param' => $param));
             }
         }
     }
@@ -432,7 +441,7 @@ class AjaxController extends Controller
             $retour['setter'] = 'setArtTitle';
             break;
         case 'art-content':
-            $retour['getter']= 'getArtcontent';
+            $retour['getter']= 'getArtContent';
             $retour['setter'] = 'setArtContent';
             break;
         default:
@@ -601,7 +610,7 @@ class AjaxController extends Controller
 		$match = "";
         $filesize = $file->getClientSize();
         $tmp = explode('/public/', $folder);
-        $fullPath = '../../bundles/'.$fullPath.'/'.$tmp[1];
+        $fullPath = '../bundles/'.$fullPath.'/'.$tmp[1];
 		if($filesize > 0){	
 			$filename = strtolower($file->getClientOriginalName());
 			$filename = preg_replace('/\s/', '_', $filename);
