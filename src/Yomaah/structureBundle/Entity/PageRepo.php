@@ -96,11 +96,9 @@ class PageRepo extends EntityRepository
         return '<div class="page admin-c border">
                     <input type="hidden" name="id" value="%pageId%" />
                     <section class="contentPage">
-                        <article class="adminPage art-titre">
-                            <h1>Page : %position%</h1>
+                            <h2>Page : %position%</h2>
                             <label>Position</label><input type="text" name="position" value="%position%" />
                             <label>Mot-clés</label><textarea class="textareaPage" name="keywords">%keywords%</textarea>
-                        </article>
                     </section>
                     <section class="btn-adminPanel">
                         <article class="btn-admin maj">
