@@ -75,20 +75,28 @@ class BundleDispatcher
                 }
             }
         }
+        //var_dump($this->isAdmin());
+        //var_dump($this->getSite());
         $this->controllers = $this->constructControllers();
         $this->sitePath = $this->constructSitePath();
     }
     public function isAuthenticated()
     {
-        if ($this->secure->getToken()->isAuthenticated())
+        if ($this->secure->getToken() != null)
         {
-            if ($this->secure->isGranted('ROLE_USER'))
+            if ($this->secure->getToken()->isAuthenticated())
             {
-                return true;
-            }else
-            {
-                return false;
+                if ($this->secure->isGranted('ROLE_USER'))
+                {
+                    return true;
+                }else
+                {
+                    return false;
+                }
             }
+        }else
+        {
+            return false;
         }
     }
 

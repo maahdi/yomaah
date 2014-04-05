@@ -12,6 +12,7 @@ $collection->add('yomaah_login', new Route('/login', array(
 $collection->add('admin_login', new Route('/admin', array(
     '_controller' => 'YomaahconnexionBundle:Connexion:login',
 )));
+
 $collection->add('login_check', new Route('/login_check',array()));
 $collection->add('logout', new Route('/logout',array()));
 

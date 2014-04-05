@@ -81,16 +81,18 @@ class GestionMenu
 
         }else
         {
-            /**
-             * Voir pour la gestion des erreurs
-             */
-            //if ($this->dispatcher->isClientSite())
-            //{
-                //return $this->getClientMenu('erreur');
-            //}else if (!($this->dispatcher->isClientSite()))
-            //{
-                //return $this->getMenuPrincipal('erreur');
-            //}
+            if ($this->dispatcher->getSite() != 'yomaah' && $this->dispatcher->isAdmin())
+            {
+                return $this->getClientMenu('clientAdmin');
+
+            }else if ($this->dispatcher->getSite() != 'yomaah' && $this->dispatcher->isAdmin() === false)
+            {
+                return $this->getClientMenu('normalClient');
+                
+            }else
+            {
+                return $this->getMenuPrincipal('normal');
+            }
         }
 
     }
@@ -156,9 +158,6 @@ class GestionMenu
         {
             $retour = array('menus' => $menus);
 
-        }else if ($mode == 'erreur')
-        {
-            $retour = array('menus' => $menus, 'position' => 'Erreur');
         }
         if ($this->dispatcher->isAuthenticated())
         {

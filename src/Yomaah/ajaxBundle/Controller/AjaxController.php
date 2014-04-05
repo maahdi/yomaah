@@ -187,6 +187,21 @@ class AjaxController extends Controller
             }
         }
     }
+    public function atteindreAction()
+    {
+        $dispatcher = $this->get('bundleDispatcher');
+        $request = $this->get('request');
+        if ($dispatcher->isAdmin())
+        {
+            $param['lien'] = $request->request->get('lien');
+            $tmp = explode('//', $request->getUri());
+            $param['url'] = $tmp[0].'//'.$request->getHttpHost().$request->getBaseUrl();
+            if ($dispatcher->isClientSite())
+            {
+                return $this->forward($dispatcher->getControllerPath().'Main:atteindre', array('param' => $param));
+            }
+        }
+    }
 
     public function getAdminContentStructureAction()
     {

@@ -12,6 +12,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Util\SecureRandom;
 use Yomaah\structureBundle\Classes\BundleDispatcher;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * Le listener est utilisé quand un utilisateur se log
@@ -50,7 +51,7 @@ class SecurityListener implements EventSubscriberInterface
             $role = $this->secure->getToken()->getUser()->getRoles();
             if (!($this->secure->getToken() == null))
             {
-                if ($role[0] == 'visiteur')
+                if ($role[0] == 'visiteur' && $this->bundleDispatcher->isClientSite() === false)
                 {
                     /**
                      * Cette portion de code définit un token générique si la base est vide
@@ -90,8 +91,8 @@ class SecurityListener implements EventSubscriberInterface
                     }else if ($this->bundleDispatcher->getDeployed())
                     {
                         $response = new RedirectResponse($this->router->generate('admin_'.$this->bundleDispatcher->getSite().'_accueil'));
-                        
                     }
+                        
 
                 }                    
                 $event->setResponse($response);
