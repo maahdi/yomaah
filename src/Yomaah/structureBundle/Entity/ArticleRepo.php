@@ -35,6 +35,29 @@ class ArticleRepo extends EntityRepository
         return $query->getResult();
     }
 
+    public function findOneByTag(Array $param)
+    {
+        if ($param['idSite'] === null)
+        {
+            $query = $this->getEntityManager()
+                ->createQuery('select a from yomaahBundle:Article a where a.tagName = :tag and a.artId= :id and p.site is null order by a.artId asc')
+                ->setParameters(array('id' => $param['id'], 'tag' => $param['tag']));
+        }else if ($param['idSite'] === false)
+        {
+            $query = $this->getEntityManager()
+                ->createQuery('select a from yomaahBundle:Article a where a.tagName = :tag and a.artId = :id order by a.artId asc')
+                ->setParameters(array('id' => $param['id'], 'tag' => $param['tag']));
+        }else
+        {
+            $query = $this->getEntityManager()
+                ->createQuery('select a, p from yomaahBundle:Article a join a.page p where a.tagName = :tag and p.site = :site order by a.artId asc')
+                ->setParameters(array('id' => $param['id'], 'tag' => $param['tag'], 'site' => $param['idSite']));
+            
+        }
+        return $query->getSingleResult();
+        
+    }
+
     public function findByTag(Array $param)
     {
         if ($param['idSite'] === null)
@@ -97,7 +120,7 @@ class ArticleRepo extends EntityRepository
         /**
          * Début == 0
          */
-        if ($param['position'] == "0")
+        if ($param['position'] == '0')
         {
             if ($param['idSite'] === null)
             {
