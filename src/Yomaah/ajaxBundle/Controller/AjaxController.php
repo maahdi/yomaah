@@ -209,7 +209,6 @@ class AjaxController extends Controller
         $param = $this->get('request')->request->all();
         if ($bundleDispatcher->isAdmin())
         {
-            //$param['lien'] = $this->get('request')->request->get('lien');
             if ($bundleDispatcher->isClientSite() && preg_match('/pagesAdmin/', $param['lien']) === 0)
             {
                 return $this->forward($bundleDispatcher->getControllerPath().'Main:getAdminContentStructure', array('param' => $param));
@@ -464,13 +463,17 @@ class AjaxController extends Controller
         return $retour;
     }
 
-    static function imageSearch($dossier, $bundle)
+    static function imageSearch($dossier, $bundle, $depth = null)
     {
         $tmp = explode('src',__DIR__);
         $rootDir = $tmp[0].'src/'.$bundle.'/Resources/public/images/'.$dossier;
 
+        if ($depth === null)
+        {
+            $depth = '0';
+        }
         $finder = new Finder();
-        $f = $finder->depth('== 0')->files()->notname('/~$/')->in($rootDir);
+        $f = $finder->depth('== '.$depth)->files()->notname('/~$/')->in($rootDir);
         if (count($f) > 0)
         {
             $tmp = array();
@@ -493,7 +496,7 @@ class AjaxController extends Controller
     {
         $bundleDispatcher = $this->get('bundleDispatcher');
         $request = $this->get('request');
-        $dossier = explode('Admin', $request->query->get('lien'));
+        $dossier = explode('Admin', urldecode($request->query->get('lien')));
         if ($bundleDispatcher->isAdmin())
         {
             if ($bundleDispatcher->isClientSite())
@@ -512,9 +515,10 @@ class AjaxController extends Controller
         $bundleDispatcher = $this->get('bundleDispatcher');
         if ($bundleDispatcher->isAdmin())
         {
+            $param['lien'] = $this->get('request')->request->get('lien');
             if ($bundleDispatcher->isClientSite())
             {
-                return $this->forward($bundleDispatcher->getControllerPath().'Main:logoAdminStructure');
+                return $this->forward($bundleDispatcher->getControllerPath().'Main:logoAdminStructure', array('param' => $param));
 
             }else
             {

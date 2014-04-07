@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  *@ORM\Entity(repositoryClass="ArticleRepo")
  *@ORM\Table(name="article")
  */
-class Article
+class Article implements \JsonSerializable
 {
     /**
      *@ORM\Id
@@ -308,5 +308,13 @@ class Article
     public function getId()
     {
         return $this->id;
+    }
+
+    public function jsonSerialize()
+    {
+        return array('artId' => $this->artId,
+            'artTitle' => $this->artTitle,
+            'artContent' => $this->artContent,
+            'pngUrl' => $this->png->getPngUrl());
     }
 }

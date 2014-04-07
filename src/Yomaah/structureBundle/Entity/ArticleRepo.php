@@ -35,6 +35,29 @@ class ArticleRepo extends EntityRepository
         return $query->getResult();
     }
 
+    public function findByTag(Array $param)
+    {
+        if ($param['idSite'] === null)
+        {
+            $query = $this->getEntityManager()
+                ->createQuery('select a from yomaahBundle:Article a where a.tagName = :tag and p.site is null order by a.artId asc')
+                ->setParameter('tag',$param['tag']);
+        }else if ($param['idSite'] === false)
+        {
+            $query = $this->getEntityManager()
+                ->createQuery('select a from yomaahBundle:Article a where a.tagName = :tag order by a.artId asc')
+                ->setParameter('tag', $param['tag']);
+        }else
+        {
+            $query = $this->getEntityManager()
+                ->createQuery('select a, p from yomaahBundle:Article a join a.page p where a.tagName = :tag and p.site = :site order by a.artId asc')
+                ->setParameters(array('tag' => $param['tag'], 'site' => $param['idSite']));
+            
+        }
+        return $query->getResult();
+        
+    }
+
     public function findDefaultArticle(Array $param)
     {
         $em = $this->getEntityManager();

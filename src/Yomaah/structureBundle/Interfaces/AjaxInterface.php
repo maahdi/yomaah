@@ -13,6 +13,6 @@ interface AjaxInterface
     public function saveElementAction(Array $param);
     public function uploadImageAction(Array $param);
     public function saveImageAction(Array $param);
-    public function logoAdminStructureAction();
+    public function logoAdminStructureAction(Array $param);
     public function deleteImageAction(Array $param);
 }
